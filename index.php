@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🗡️ Jeu de Combat Simple 🛡️</h1>
+        <h1>🗡️ Jeu de Combat tour par tour 🛡️</h1>
         
         <!-- FORMULAIRE SIMPLE -->
         <form method="POST" action="">
