@@ -162,6 +162,38 @@ class Magicien extends Personnage
         $adversaire->recevoirDegats($degats);
     }
 }
+// CLASSE FILLE : Noob
+// Le Noob hérite de Personnage mais a une capacité spéciale : attaque aléatoire et dommage sur lui même
+class Noob extends Personnage
+{
+    // CONSTRUCTEUR du Noob (80 PV, 5 Force - le plus faible)
+    public function __construct($nom)
+    {
+        parent::__construct($nom, 80, 5);
+    }
+
+    // MÉTHODE REDÉFINIE : le Noob a sa propre version d'attaquer()
+    public function attaquer($adversaire)
+    {
+        $chance = rand(1, 100);
+
+if ($chance <= 30) {
+    // 30% de chance d'infliger des dégâts normaux
+    $degats = $this->force;
+    echo $this->nom . " attaque " . $adversaire->nom . " et inflige " . $degats . " dégâts\n";
+    $adversaire->recevoirDegats($degats);
+} elseif ($chance <= 60) {
+    // 30% de chance d'infliger des dégâts puissants
+    $degats = $this->force * 1.5; // ou le multiplicateur de votre choix
+    echo $this->nom . " attaque puissamment " . $adversaire->nom . " et inflige " . $degats . " dégâts\n";
+    $adversaire->recevoirDegats($degats);
+} else {
+    // 40% de chance de se blesser
+    $degats = $this->force / 2;
+    echo $this->nom . " se blesse en attaquant et subit " . $degats . " dégâts\n";
+    $this->recevoirDegats($degats);
+}
+    }
 
 // ===================================================
 // LOGIQUE SIMPLE DU JEU (avec commentaires détaillés)
