@@ -19,6 +19,7 @@
                     <option value="guerrier">🛡️ Guerrier (120 PV, 15 Force)</option>
                     <option value="voleur">🗡️ Voleur (100 PV, 12 Force)</option>
                     <option value="magicien">🔮 Magicien (90 PV, 8 Force)</option>
+                    <option value="noob">🤡 Noob (80 PV, 5 Force) - Imprévisible !</option>
                 </select>
             </div>
             
@@ -177,23 +178,24 @@ class Noob extends Personnage
     {
         $chance = rand(1, 100);
 
-if ($chance <= 30) {
-    // 30% de chance d'infliger des dégâts normaux
-    $degats = $this->force;
-    echo $this->nom . " attaque " . $adversaire->nom . " et inflige " . $degats . " dégâts\n";
-    $adversaire->recevoirDegats($degats);
-} elseif ($chance <= 60) {
-    // 30% de chance d'infliger des dégâts puissants
-    $degats = $this->force * 1.5; // ou le multiplicateur de votre choix
-    echo $this->nom . " attaque puissamment " . $adversaire->nom . " et inflige " . $degats . " dégâts\n";
-    $adversaire->recevoirDegats($degats);
-} else {
-    // 40% de chance de se blesser
-    $degats = $this->force / 2;
-    echo $this->nom . " se blesse en attaquant et subit " . $degats . " dégâts\n";
-    $this->recevoirDegats($degats);
-}
+        if ($chance <= 30) {
+            // 30% de chance d'infliger des dégâts normaux
+            $degats = $this->force;
+            echo $this->nom . " attaque " . $adversaire->nom . " et inflige " . $degats . " dégâts\n";
+            $adversaire->recevoirDegats($degats);
+        } elseif ($chance <= 60) {
+            // 30% de chance d'infliger des dégâts puissants
+            $degats = $this->force * 1.5;
+            echo $this->nom . " attaque puissamment " . $adversaire->nom . " et inflige " . $degats . " dégâts\n";
+            $adversaire->recevoirDegats($degats);
+        } else {
+            // 40% de chance de se blesser
+            $degats = $this->force / 2;
+            echo $this->nom . " se blesse en attaquant et subit " . $degats . " dégâts\n";
+            $this->recevoirDegats($degats);
+        }
     }
+}
 
 // ===================================================
 // LOGIQUE SIMPLE DU JEU (avec commentaires détaillés)
@@ -231,6 +233,11 @@ if (isset($_POST['personnage'])) {
                 $joueur = new Magicien("Héros");
                 echo '<p><strong>Vous jouez avec :</strong> 🔮 Magicien (Magie puissante !)</p>';
                 
+            } elseif ($choix == "noob") {
+                // Le Noob a 80 PV, 5 Force mais est très imprévisible
+                $joueur = new Noob("Héros");
+                echo '<p><strong>Vous jouez avec :</strong> 🤡 Noob (Imprévisible et chaotique !)</p>';
+                
             } else {
                 // Si le choix n'est pas reconnu, on met un Guerrier par défaut
                 $joueur = new Guerrier("Héros");
@@ -242,8 +249,8 @@ if (isset($_POST['personnage'])) {
             // L'ordinateur choisit un ennemi au hasard
             // ========================================
             
-            // rand(1, 3) = nombre aléatoire entre 1 et 3
-            $numeroAdversaire = rand(1, 3);
+            // rand(1, 4) = nombre aléatoire entre 1 et 4
+            $numeroAdversaire = rand(1, 4);
             
             if ($numeroAdversaire == 1) {
                 $adversaire = new Guerrier("Ennemi Guerrier");
@@ -253,9 +260,13 @@ if (isset($_POST['personnage'])) {
                 $adversaire = new Voleur("Ennemi Voleur");
                 echo '<p><strong>Votre adversaire :</strong> 🗡️ Voleur Ennemi</p>';
                 
-            } else { // Si c'est 3 ou autre chose
+            } elseif ($numeroAdversaire == 3) {
                 $adversaire = new Magicien("Ennemi Magicien");
                 echo '<p><strong>Votre adversaire :</strong> 🔮 Magicien Ennemi</p>';
+                
+            } else { // Si c'est 4
+                $adversaire = new Noob("Ennemi Noob");
+                echo '<p><strong>Votre adversaire :</strong> 🤡 Noob Ennemi</p>';
             }
             
             echo '</div>';
