@@ -6,9 +6,9 @@ Ce projet est un **mini jeu de combat tour par tour** en PHP qui utilise les con
 
 ### 📁 Structure actuelle des fichiers
 - `index.php` : Version complète avec classes intégrées et CSS externe
-- `jeu_simple.php` : Version simplifiée avec tout dans un seul fichier (optionnelle)
+
 - `style.css` : Feuille de style externe
-- `EXPLICATION_CODE.md` : Ce guide explicatif
+
 - `README.md` : Documentation principale
 
 **Note :** Le projet utilise maintenant une approche simplifiée avec toutes les classes directement dans `index.php` pour faciliter l'apprentissage.
