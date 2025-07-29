@@ -163,9 +163,9 @@ class Magicien extends Personnage
     }
 }
 
-// ========================================
+// ===================================================
 // LOGIQUE SIMPLE DU JEU (avec commentaires détaillés)
-// ========================================
+// ===================================================
 
 // VÉRIFICATION : Est-ce qu'un personnage a été choisi ?
 // $_POST['personnage'] contient la valeur du formulaire si il a été envoyé
